@@ -1,6 +1,10 @@
 #!/usr/bin/python3
 """
+<<<<<<< HEAD
 contains the TestFileStorageDocs classes.
+=======
+Contains the TestFileStorageDocs classes
+>>>>>>> d7ca60b5d810adfbf2a25dcedb26c44779c6fc53
 """
 
 from datetime import datetime
@@ -24,7 +28,11 @@ classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
 
 
 class TestFileStorageDocs(unittest.TestCase):
+<<<<<<< HEAD
     """Tests to check the documentation and style of FileStorage class."""
+=======
+    """Tests to check the documentation and style of FileStorage class"""
+>>>>>>> d7ca60b5d810adfbf2a25dcedb26c44779c6fc53
     @classmethod
     def setUpClass(cls):
         """Set up for the doc tests"""
@@ -46,13 +54,18 @@ test_file_storage.py'])
                          "Found code style errors (and warnings).")
 
     def test_file_storage_module_docstring(self):
+<<<<<<< HEAD
         """Test for the file_storage.py module docstring."""
+=======
+        """Test for the file_storage.py module docstring"""
+>>>>>>> d7ca60b5d810adfbf2a25dcedb26c44779c6fc53
         self.assertIsNot(file_storage.__doc__, None,
                          "file_storage.py needs a docstring")
         self.assertTrue(len(file_storage.__doc__) >= 1,
                         "file_storage.py needs a docstring")
 
     def test_file_storage_class_docstring(self):
+<<<<<<< HEAD
         """Test for the FileStorage class docstring."""
         self.assertIsNot(FileStorage.__doc__, None,
                          "State class needs a docstring")
@@ -61,6 +74,16 @@ test_file_storage.py'])
 
     def test_fs_func_docstrings(self):
         """Test for the presence of docstrings in FileStorage methods."""
+=======
+        """Test for the FileStorage class docstring"""
+        self.assertIsNot(FileStorage.__doc__, None,
+                         "FileStorage class needs a docstring")
+        self.assertTrue(len(FileStorage.__doc__) >= 1,
+                        "FileStorage class needs a docstring")
+
+    def test_fs_func_docstrings(self):
+        """Test for the presence of docstrings in FileStorage methods"""
+>>>>>>> d7ca60b5d810adfbf2a25dcedb26c44779c6fc53
         for func in self.fs_f:
             self.assertIsNot(func[1].__doc__, None,
                              "{:s} method needs a docstring".format(func[0]))
@@ -69,10 +92,15 @@ test_file_storage.py'])
 
 
 class TestFileStorage(unittest.TestCase):
+<<<<<<< HEAD
     """Test the FileStorage class."""
 
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db',
                      "not testing file storage")
+=======
+    """Test the FileStorage class"""
+    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+>>>>>>> d7ca60b5d810adfbf2a25dcedb26c44779c6fc53
     def test_all_returns_dict(self):
         """Test that all returns the FileStorage.__objects attr"""
         storage = FileStorage()
@@ -80,10 +108,16 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(type(new_dict), dict)
         self.assertIs(new_dict, storage._FileStorage__objects)
 
+<<<<<<< HEAD
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db',
                      "not testing file storage")
     def test_new(self):
         """test that new adds an object to the FileStorage.__objects attr."""
+=======
+    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    def test_new(self):
+        """test that new adds an object to the FileStorage.__objects attr"""
+>>>>>>> d7ca60b5d810adfbf2a25dcedb26c44779c6fc53
         storage = FileStorage()
         save = FileStorage._FileStorage__objects
         FileStorage._FileStorage__objects = {}
@@ -97,8 +131,12 @@ class TestFileStorage(unittest.TestCase):
                 self.assertEqual(test_dict, storage._FileStorage__objects)
         FileStorage._FileStorage__objects = save
 
+<<<<<<< HEAD
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db',
                      "not testing file storage")
+=======
+    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+>>>>>>> d7ca60b5d810adfbf2a25dcedb26c44779c6fc53
     def test_save(self):
         """Test that save properly saves objects to file.json"""
         storage = FileStorage()
@@ -117,6 +155,7 @@ class TestFileStorage(unittest.TestCase):
         with open("file.json", "r") as f:
             js = f.read()
         self.assertEqual(json.loads(string), json.loads(js))
+<<<<<<< HEAD
 
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db',
                      "not testing file storage")
@@ -141,3 +180,5 @@ class TestFileStorage(unittest.TestCase):
         new_state.save()
         self.assertEqual(storage.count(), initial_length + 1)
         self.assertEqual(storage.count("State"), state_len + 1)
+=======
+>>>>>>> d7ca60b5d810adfbf2a25dcedb26c44779c6fc53

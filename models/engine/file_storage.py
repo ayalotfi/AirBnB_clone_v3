@@ -1,6 +1,10 @@
 #!/usr/bin/python3
 """
+<<<<<<< HEAD
 contains the FileStorage class.
+=======
+Contains the FileStorage class
+>>>>>>> d7ca60b5d810adfbf2a25dcedb26c44779c6fc53
 """
 
 import json
@@ -17,6 +21,7 @@ classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
 
 
 class FileStorage:
+<<<<<<< HEAD
     """serializes instances to a JSON file & deserializes back to instances."""
 
     __file_path = "file.json"
@@ -32,6 +37,24 @@ class FileStorage:
         else:
             return {k: v for k, v in self.__objects.items()
                     if v.__class__ == cls}
+=======
+    """serializes instances to a JSON file & deserializes back to instances"""
+
+    # string - path to the JSON file
+    __file_path = "file.json"
+    # dictionary - empty but will store all objects by <class name>.id
+    __objects = {}
+
+    def all(self, cls=None):
+        """returns the dictionary __objects"""
+        if cls is not None:
+            new_dict = {}
+            for key, value in self.__objects.items():
+                if cls == value.__class__ or cls == value.__class__.__name__:
+                    new_dict[key] = value
+            return new_dict
+        return self.__objects
+>>>>>>> d7ca60b5d810adfbf2a25dcedb26c44779c6fc53
 
     def new(self, obj):
         """sets in __objects the obj with key <obj class name>.id"""
@@ -40,15 +63,26 @@ class FileStorage:
             self.__objects[key] = obj
 
     def save(self):
+<<<<<<< HEAD
         """serializes __objects to the JSON file (path: __file_path)."""
         json_objects = {}
         for key in self.__objects:
             json_objects[key] = self.__objects[key].to_dict(save_to_disk=True)
+=======
+        """serializes __objects to the JSON file (path: __file_path)"""
+        json_objects = {}
+        for key in self.__objects:
+            json_objects[key] = self.__objects[key].to_dict()
+>>>>>>> d7ca60b5d810adfbf2a25dcedb26c44779c6fc53
         with open(self.__file_path, 'w') as f:
             json.dump(json_objects, f)
 
     def reload(self):
+<<<<<<< HEAD
         """deserializes the JSON file to __objects."""
+=======
+        """deserializes the JSON file to __objects"""
+>>>>>>> d7ca60b5d810adfbf2a25dcedb26c44779c6fc53
         try:
             with open(self.__file_path, 'r') as f:
                 jo = json.load(f)
@@ -58,6 +92,7 @@ class FileStorage:
             pass
 
     def delete(self, obj=None):
+<<<<<<< HEAD
         """delete obj from __objects if it’s inside."""
         if obj is not None:
             del self.__objects[obj.__class__.__name__ + '.' + obj.id]
@@ -85,3 +120,14 @@ class FileStorage:
         elif cls is None:
             total = len(self.__objects)
         return total
+=======
+        """delete obj from __objects if it’s inside"""
+        if obj is not None:
+            key = obj.__class__.__name__ + '.' + obj.id
+            if key in self.__objects:
+                del self.__objects[key]
+
+    def close(self):
+        """call reload() method for deserializing the JSON file to objects"""
+        self.reload()
+>>>>>>> d7ca60b5d810adfbf2a25dcedb26c44779c6fc53
